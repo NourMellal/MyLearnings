@@ -3,9 +3,9 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#define BUFF_SIZE 2024
+#define BUFF_SIZE 2048
 
-int _strlen(char *s)
+int ft_strlen(char *s)
 {
 	int i;
 
@@ -15,19 +15,19 @@ int _strlen(char *s)
 	return(i);
 }
 
-void _pucthar(char c, int std)
+void ft_pucthar(char c, int std)
 {
 	write(std, &c, 1);
 }
 
-void putstr(char *s, int std, int len)
+void ft_putstr(char *s, int std, int len)
 {
 	int i;
 	if (len == 0)
-		len = _strlen(s);
+		len = ft_strlen(s);
 	i = -1;
 	while (++i < len)
-		_pucthar(s[i], std);
+		ft_pucthar(s[i], std);
 
 }
 
@@ -47,22 +47,23 @@ void read_file(char *file_path)
 
 			if (size <= 0)
 			{
-				_pucthar('\n', 1);
+				ft_pucthar('\n', 1);
+				close(file);
 				break;
 			}
-			putstr(buffer, 1, size);
+			ft_putstr(buffer, 1, size);
 		}
 	}
 	else
-		putstr("Cannot read file.\n", 2, 0);
+		ft_putstr("Cannot read file.\n", 2, 0);
 }
 
 int main(int argc, char *argv[])
 {
 	if (argc == 1)
-		putstr("File name missing.\n", 2, 0);
+		ft_putstr("File name missing.\n", 2, 0);
 	else if (argc > 2)
-		putstr("Too many arguments.\n", 2, 0);
+		ft_putstr("Too many arguments.\n", 2, 0);
 	else
 		read_file(argv[1]);
 	return 0;
