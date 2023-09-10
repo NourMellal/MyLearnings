@@ -47,6 +47,7 @@ void ft_tail(int fd, int count)
 		count = ft_strlen(file_content);
 	while (file_content[ft_strlen(file_content) - count])
 		write(1, &file_content[ft_strlen(file_content) - count--], 1);
+	free(file_content);
 }
 
 
