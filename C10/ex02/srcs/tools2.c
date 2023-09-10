@@ -1,4 +1,4 @@
-#include "includes/ft.h"
+#include "../includes/ft.h"
 
 char *concat_realloc(char *dest, char *src, int n)
 {

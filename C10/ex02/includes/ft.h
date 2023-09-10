@@ -8,6 +8,7 @@
 #include <string.h>
 #include <errno.h>
 #include <libgen.h>
+#include <stdio.h>
 
 #define STDIN 0
 #define STDOUT 1

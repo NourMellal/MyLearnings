@@ -1,4 +1,4 @@
-#include "includes/ft.h"
+#include "../includes/ft.h"
 
 
 /* my_tail: protected_file.txt: Permission denied */
@@ -30,6 +30,10 @@ char *proc_file(int fd)
 		len = read(fd, buffer, 1024);
 		if (len > 0)
 			content = concat_realloc(content, buffer, len);
+		else if (len == -1)
+			break;
+		else if (len == 0);
+			break;
 	}
 	return (content);
 }
@@ -37,21 +41,12 @@ char *proc_file(int fd)
 void ft_tail(int fd, int count)
 {
 	char *file_content;
-	int content_len;
-	int i;
 
 	file_content = proc_file(fd);
-	content_len = ft_strlen(file_content);
-
-	if (count > content_len)
-		count = content_len;
-
-	i = content_len - count;
-	while (i < content_len)
-	{
-		write(STDOUT, &file_content[i], 1);
-		i++;
-	}
+	if (count > ft_strlen(file_content))
+		count = ft_strlen(file_content);
+	while (file_content[ft_strlen(file_content) - count])
+		write(1, &file_content[ft_strlen(file_content) - count--], 1);
 }
 
 

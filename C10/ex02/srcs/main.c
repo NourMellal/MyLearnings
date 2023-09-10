@@ -1,12 +1,12 @@
-#include "includes/ft.h"
+#include "../includes/ft.h"
 
 tail_param parse(int argc, char **argv)
 {
 	tail_param param;
 
 	param.byte_value = 0;
-	param.fileindex = 0;
-	param.read_from_stdin = -1;
+	param.fileindex = -1;
+	param.read_from_stdin = 0;
 
 	if (argc < 3 || (ft_strcmp(argv[1], "-c") == 0 && argc < 4))
 	{
@@ -47,12 +47,12 @@ int main(int argc, char *argv[])
 		{
 			prnt_head(argv[file_index], param.fileindex, file_index, argc);
 			ft_tail(fd, param.byte_value);
+			close(fd);
 		}
 		else
 		{
 			print_err(argv[file_index], argv[0]);
 			close(fd);
-			file_index++;
 		}
 		file_index++;
 	}
